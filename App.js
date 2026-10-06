@@ -11,15 +11,14 @@ export default function App() {
           style={styles.avatar}
         />
 
-        <Text style={styles.name}>Jigme Losel
-        </Text>
+        <Text style={styles.name}>Jigme Losel</Text>
 
         <Text style={styles.subtitle}>
           BE Information Technology · Year 3
         </Text>
 
         <Text style={styles.bio}>
-          I am a student interested in developing useful mobile applications.
+          I am a student.
         </Text>
 
       </View>
