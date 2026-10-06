@@ -33,6 +33,12 @@ export default function App() {
           </Text>
         </View>
 
+        {likes >= 10 && (
+          <Text style={styles.popularText}>
+            You're popular!
+          </Text>
+        )}
+
         <View style={styles.row}>
 
           <Pressable
@@ -45,10 +51,18 @@ export default function App() {
 
           <Pressable
             style={styles.button}
-            onPress={() => setLikes(likes - 1)}
+            onPress={() => setLikes(Math.max(0, likes - 1))}
           >
             <Ionicons name="arrow-down" size={22} color="#fff" />
             <Text style={styles.buttonLabel}>Downvote</Text>
+          </Pressable>
+
+          <Pressable
+            style={styles.resetButton}
+            onPress={() => setLikes(0)}
+          >
+            <Ionicons name="refresh" size={22} color="#fff" />
+            <Text style={styles.buttonLabel}>Reset</Text>
           </Pressable>
 
         </View>
@@ -117,19 +131,34 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 
+  popularText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+
   row: {
     flexDirection: 'row',
-    gap: 12,
+    gap: 8,
     marginTop: 12,
   },
 
   button: {
     backgroundColor: '#2f6fed',
     paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     borderRadius: 10,
     alignItems: 'center',
-    minWidth: 84,
+    minWidth: 80,
+  },
+
+  resetButton: {
+    backgroundColor: '#d64545',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 10,
+    alignItems: 'center',
+    minWidth: 80,
   },
 
   buttonLabel: {
