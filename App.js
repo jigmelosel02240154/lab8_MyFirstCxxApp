@@ -42,7 +42,10 @@ export default function App() {
         <View style={styles.row}>
 
           <Pressable
-            style={styles.button}
+            style={({ pressed }) => [
+              styles.button,
+              pressed && styles.pressed,
+            ]}
             onPress={() => setLikes(likes + 1)}
           >
             <Ionicons name="arrow-up" size={22} color="#fff" />
@@ -50,7 +53,10 @@ export default function App() {
           </Pressable>
 
           <Pressable
-            style={styles.button}
+            style={({ pressed }) => [
+              styles.button,
+              pressed && styles.pressed,
+            ]}
             onPress={() => setLikes(Math.max(0, likes - 1))}
           >
             <Ionicons name="arrow-down" size={22} color="#fff" />
@@ -58,7 +64,10 @@ export default function App() {
           </Pressable>
 
           <Pressable
-            style={styles.resetButton}
+            style={({ pressed }) => [
+              styles.resetButton,
+              pressed && styles.pressed,
+            ]}
             onPress={() => setLikes(0)}
           >
             <Ionicons name="refresh" size={22} color="#fff" />
@@ -166,5 +175,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
     marginTop: 2,
+  },
+
+  pressed: {
+    opacity: 0.6,
   },
 });
