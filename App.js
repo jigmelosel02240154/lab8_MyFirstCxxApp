@@ -1,7 +1,11 @@
+import { useState } from 'react';
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function App() {
+  const [likes, setLikes] = useState(0);
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -20,6 +24,34 @@ export default function App() {
         <Text style={styles.bio}>
           I am a student.
         </Text>
+
+        <View style={styles.likesRow}>
+          <Ionicons name="heart" size={22} color="#d64545" />
+
+          <Text style={styles.likesText}>
+            {likes} likes
+          </Text>
+        </View>
+
+        <View style={styles.row}>
+
+          <Pressable
+            style={styles.button}
+            onPress={() => setLikes(likes + 1)}
+          >
+            <Ionicons name="arrow-up" size={22} color="#fff" />
+            <Text style={styles.buttonLabel}>Upvote</Text>
+          </Pressable>
+
+          <Pressable
+            style={styles.button}
+            onPress={() => setLikes(likes - 1)}
+          >
+            <Ionicons name="arrow-down" size={22} color="#fff" />
+            <Text style={styles.buttonLabel}>Downvote</Text>
+          </Pressable>
+
+        </View>
 
       </View>
 
@@ -72,5 +104,38 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 12,
     lineHeight: 22,
+  },
+
+  likesRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginTop: 20,
+  },
+
+  likesText: {
+    fontSize: 18,
+  },
+
+  row: {
+    flexDirection: 'row',
+    gap: 12,
+    marginTop: 12,
+  },
+
+  button: {
+    backgroundColor: '#2f6fed',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    alignItems: 'center',
+    minWidth: 84,
+  },
+
+  buttonLabel: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: '600',
+    marginTop: 2,
   },
 });
